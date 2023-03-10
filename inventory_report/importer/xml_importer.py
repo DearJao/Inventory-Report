@@ -5,7 +5,8 @@ from xml.etree import ElementTree
 class XmlImporter(Importer):
     @classmethod
     def import_data(cls, file_path):
-        cls.check_file_extension(cls, file_path, "xml")
+        if ".xml" not in file_path:
+            raise ValueError("Arquivo inválido")
         file = ElementTree.parse(file_path).getroot()
         data_dict = []
 
